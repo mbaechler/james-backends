@@ -43,10 +43,15 @@
           class="org.apache.james.mailbox.cassandra.CassandraMailboxModule"
           lazy-init="true"/>
 
+    <bean id="cassandra-data-module"
+          class="org.apache.james.CassandraDataModule"
+          lazy-init="true"/>
+
     <bean id="cassandra-module-composite"
           class="org.apache.james.backends.cassandra.init.CassandraModuleComposite"
           lazy-init="true">
         <constructor-arg index="0" ref="cassandra-mailbox-module"/>
+        <constructor-arg index="1" ref="cassandra-data-module"/>
     </bean>
 
     <bean id="cassandra-cluster"
