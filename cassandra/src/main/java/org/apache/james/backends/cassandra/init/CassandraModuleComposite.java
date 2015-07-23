@@ -16,16 +16,20 @@ public class CassandraModuleComposite implements CassandraModule {
     private final ImmutableList<CassandraIndex> index;
     private final ImmutableList<CassandraType> types;
 
-    public CassandraModuleComposite(CassandraModule... modules) {
-        tables = Arrays.stream(modules)
+    public CassandraModuleComposite(List<CassandraModule> modules) {
+        tables = modules.stream()
             .flatMap(module -> module.moduleTables().stream())
             .collect(Collectors.collectingAndThen(Collectors.toList(), ImmutableList::copyOf));
-        index = Arrays.stream(modules)
+        index = modules.stream()
             .flatMap(module -> module.moduleIndex().stream())
             .collect(Collectors.collectingAndThen(Collectors.toList(), ImmutableList::copyOf));
-        types = Arrays.stream(modules)
+        types = modules.stream()
             .flatMap(module -> module.moduleTypes().stream())
             .collect(Collectors.collectingAndThen(Collectors.toList(), ImmutableList::copyOf));
+    }
+
+    public CassandraModuleComposite(CassandraModule... modules) {
+        this(Arrays.asList(modules));
     }
 
     @Override
