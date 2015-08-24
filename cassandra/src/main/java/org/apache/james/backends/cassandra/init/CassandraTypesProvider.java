@@ -28,9 +28,12 @@ import com.google.common.collect.ImmutableMap;
 import org.apache.james.backends.cassandra.components.CassandraModule;
 import org.apache.james.backends.cassandra.components.CassandraType;
 
+import javax.inject.Inject;
+
 public class CassandraTypesProvider {
     private final ImmutableMap<String, UserType> userTypes;
 
+    @Inject
     public CassandraTypesProvider(CassandraModule module, Session session) {
         userTypes = module.moduleTypes()
             .stream()
