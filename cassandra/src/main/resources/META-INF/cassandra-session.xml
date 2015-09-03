@@ -40,15 +40,15 @@
     </bean>
 
     <bean id="cassandra-mailbox-module"
-          class="org.apache.james.mailbox.cassandra.CassandraMailboxModule"
+          class="org.apache.james.mailbox.cassandra.CassandraMailboxFeatures"
           lazy-init="true"/>
 
     <bean id="cassandra-data-module"
-          class="org.apache.james.CassandraDataModule"
+          class="org.apache.james.CassandraDataFeatures"
           lazy-init="true"/>
 
     <bean id="cassandra-module-composite"
-          class="org.apache.james.backends.cassandra.init.CassandraModuleComposite"
+          class="org.apache.james.backends.cassandra.init.CassandraFeaturesComposite"
           lazy-init="true">
         <constructor-arg index="0">
             <list>

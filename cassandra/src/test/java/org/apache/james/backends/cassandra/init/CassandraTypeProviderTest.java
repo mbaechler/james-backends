@@ -30,7 +30,7 @@ import com.datastax.driver.core.schemabuilder.SchemaBuilder;
 import com.google.common.collect.ImmutableList;
 import org.apache.james.backends.cassandra.CassandraClusterSingleton;
 import org.apache.james.backends.cassandra.components.CassandraIndex;
-import org.apache.james.backends.cassandra.components.CassandraModule;
+import org.apache.james.backends.cassandra.components.CassandraFeatures;
 import org.apache.james.backends.cassandra.components.CassandraTable;
 import org.apache.james.backends.cassandra.components.CassandraType;
 import org.junit.After;
@@ -43,11 +43,11 @@ public class CassandraTypeProviderTest {
     private static final String PROPERTY = "property";
     
     private CassandraClusterSingleton cassandra;
-    private CassandraModule module;
+    private CassandraFeatures module;
 
     @Before
     public void setUp() {
-        module = new CassandraModule() {
+        module = new CassandraFeatures() {
             @Override public List<CassandraTable> moduleTables() {
                 return ImmutableList.of();
             }

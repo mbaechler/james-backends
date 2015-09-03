@@ -21,7 +21,7 @@ package org.apache.james.backends.cassandra.components;
 
 import java.util.List;
 
-public interface CassandraModule {
+public interface CassandraFeatures {
 
     List<CassandraTable> moduleTables();
 

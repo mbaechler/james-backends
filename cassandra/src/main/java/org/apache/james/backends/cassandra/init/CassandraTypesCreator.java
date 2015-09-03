@@ -21,14 +21,14 @@ package org.apache.james.backends.cassandra.init;
 
 import com.datastax.driver.core.Session;
 import com.google.common.collect.ImmutableList;
-import org.apache.james.backends.cassandra.components.CassandraModule;
+import org.apache.james.backends.cassandra.components.CassandraFeatures;
 import org.apache.james.backends.cassandra.components.CassandraType;
 
 public class CassandraTypesCreator {
     private final ImmutableList<CassandraType> types;
     private final Session session;
 
-    public CassandraTypesCreator(CassandraModule module, Session session) {
+    public CassandraTypesCreator(CassandraFeatures module, Session session) {
         this.types = ImmutableList.copyOf(module.moduleTypes());
         this.session = session;
     }

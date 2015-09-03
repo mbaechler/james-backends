@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 import com.datastax.driver.core.Session;
 import com.datastax.driver.core.UserType;
 import com.google.common.collect.ImmutableMap;
-import org.apache.james.backends.cassandra.components.CassandraModule;
+import org.apache.james.backends.cassandra.components.CassandraFeatures;
 import org.apache.james.backends.cassandra.components.CassandraType;
 
 import javax.inject.Inject;
@@ -34,7 +34,7 @@ public class CassandraTypesProvider {
     private final ImmutableMap<String, UserType> userTypes;
 
     @Inject
-    public CassandraTypesProvider(CassandraModule module, Session session) {
+    public CassandraTypesProvider(CassandraFeatures module, Session session) {
         userTypes = module.moduleTypes()
             .stream()
             .collect(Collectors.collectingAndThen(

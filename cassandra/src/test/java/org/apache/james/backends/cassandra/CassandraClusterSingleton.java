@@ -22,7 +22,7 @@ import com.datastax.driver.core.exceptions.NoHostAvailableException;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Session;
 import com.google.common.base.Throwables;
-import org.apache.james.backends.cassandra.components.CassandraModule;
+import org.apache.james.backends.cassandra.components.CassandraFeatures;
 import org.apache.james.backends.cassandra.init.CassandraTableManager;
 import org.apache.james.backends.cassandra.init.CassandraTypesProvider;
 import org.apache.james.backends.cassandra.init.ClusterFactory;
@@ -46,11 +46,11 @@ public final class CassandraClusterSingleton {
 
     private static final Logger LOG = LoggerFactory.getLogger(CassandraClusterSingleton.class);
     private static CassandraClusterSingleton cluster = null;
-    private final CassandraModule module;
+    private final CassandraFeatures module;
     private Session session;
     private CassandraTypesProvider typesProvider;
 
-    public static synchronized CassandraClusterSingleton create(CassandraModule module) throws RuntimeException {
+    public static synchronized CassandraClusterSingleton create(CassandraFeatures module) throws RuntimeException {
         LOG.info("Retrieving cluster instance.");
         if (cluster == null) {
             cluster = new CassandraClusterSingleton(module);
@@ -58,7 +58,7 @@ public final class CassandraClusterSingleton {
         return cluster;
     }
 
-    private CassandraClusterSingleton(CassandraModule module) throws RuntimeException {
+    private CassandraClusterSingleton(CassandraFeatures module) throws RuntimeException {
         this.module = module;
         try {
             EmbeddedCassandraServerHelper.startEmbeddedCassandra();

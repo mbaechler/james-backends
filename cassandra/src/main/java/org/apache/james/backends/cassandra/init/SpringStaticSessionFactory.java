@@ -21,15 +21,15 @@ package org.apache.james.backends.cassandra.init;
 
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Session;
-import org.apache.james.backends.cassandra.components.CassandraModule;
+import org.apache.james.backends.cassandra.components.CassandraFeatures;
 
 public class SpringStaticSessionFactory {
 
-    public static Session createSession(Cluster cluster, String keyspace, CassandraModule module) {
+    public static Session createSession(Cluster cluster, String keyspace, CassandraFeatures module) {
         return new SessionWithInitializedTablesFactory(module).createSession(cluster, keyspace);
     }
 
-    public static Session createSession(Cluster cluster, CassandraModule module) {
+    public static Session createSession(Cluster cluster, CassandraFeatures module) {
         return new SessionWithInitializedTablesFactory(module).createSession(cluster);
     }
 

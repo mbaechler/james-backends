@@ -5,18 +5,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.google.common.collect.ImmutableList;
+import org.apache.james.backends.cassandra.components.CassandraFeatures;
 import org.apache.james.backends.cassandra.components.CassandraIndex;
-import org.apache.james.backends.cassandra.components.CassandraModule;
 import org.apache.james.backends.cassandra.components.CassandraTable;
 import org.apache.james.backends.cassandra.components.CassandraType;
 
-public class CassandraModuleComposite implements CassandraModule {
+public class CassandraFeaturesComposite implements CassandraFeatures {
 
     private final ImmutableList<CassandraTable> tables;
     private final ImmutableList<CassandraIndex> index;
     private final ImmutableList<CassandraType> types;
 
-    public CassandraModuleComposite(List<CassandraModule> modules) {
+    public CassandraFeaturesComposite(List<CassandraFeatures> modules) {
         tables = modules.stream()
             .flatMap(module -> module.moduleTables().stream())
             .collect(Collectors.collectingAndThen(Collectors.toList(), ImmutableList::copyOf));
@@ -28,7 +28,7 @@ public class CassandraModuleComposite implements CassandraModule {
             .collect(Collectors.collectingAndThen(Collectors.toList(), ImmutableList::copyOf));
     }
 
-    public CassandraModuleComposite(CassandraModule... modules) {
+    public CassandraFeaturesComposite(CassandraFeatures... modules) {
         this(Arrays.asList(modules));
     }
 

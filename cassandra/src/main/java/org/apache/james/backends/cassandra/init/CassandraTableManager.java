@@ -21,14 +21,14 @@ package org.apache.james.backends.cassandra.init;
 
 import com.datastax.driver.core.Session;
 import com.datastax.driver.core.querybuilder.QueryBuilder;
-import org.apache.james.backends.cassandra.components.CassandraModule;
+import org.apache.james.backends.cassandra.components.CassandraFeatures;
 
 public class CassandraTableManager {
 
     private final Session session;
-    private final CassandraModule module;
+    private final CassandraFeatures module;
 
-    public CassandraTableManager(CassandraModule module, Session session) {
+    public CassandraTableManager(CassandraFeatures module, Session session) {
         this.session = session;
         this.module = module;
     }

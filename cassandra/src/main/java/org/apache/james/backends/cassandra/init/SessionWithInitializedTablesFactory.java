@@ -21,14 +21,14 @@ package org.apache.james.backends.cassandra.init;
 
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Session;
-import org.apache.james.backends.cassandra.components.CassandraModule;
+import org.apache.james.backends.cassandra.components.CassandraFeatures;
 
 public class SessionWithInitializedTablesFactory {
     private final static String DEFAULT_KEYSPACE_NAME = "apache_james";
 
-    private CassandraModule module;
+    private CassandraFeatures module;
 
-    public SessionWithInitializedTablesFactory(CassandraModule module) {
+    public SessionWithInitializedTablesFactory(CassandraFeatures module) {
         this.module = module;
     }
 
